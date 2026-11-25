@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int rows, cols;
+    cout << "Введіть кількість рядків та стовпців масиву: ";
+    cin >> rows >> cols;
+
+    if (rows < 3 || cols <= 0) {
+        cout << "Помилка: у масиві має бути щонайменше 3 рядки та 1 стовпець." << endl;
+        return 1;
+    }
+
+    vector<vector<int>> arr(rows, vector<int>(cols));
+    cout << "Введіть елементи масиву (" << rows << "x" << cols << "):" << endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cin >> arr[i][j];
+        }
+    }
+
+    int odd_count = 0;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            if (arr[i][j] % 2 != 0) {
+                ++odd_count;
+            }
+        }
+    }
+
+    int third_row_elements = arr[2].size(); // кількість елементів 3-го рядка (індекс 2)
+    long long result = static_cast<long long>(odd_count) * third_row_elements;
+
+    cout << "Кількість непарних елементів: " << odd_count << endl;
+    cout << "Кількість елементів 3-го рядка: " << third_row_elements << endl;
+    cout << "Результат (добуток): " << result << endl;
+
+    return 0;
+}
